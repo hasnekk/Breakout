@@ -15,7 +15,7 @@ const BRICK_COLORS = ["purple", "pink", "blue", "yellow"];
 const BALL_RADIUS = 10;
 const BALL_COLOR = "white";
 const LOCAL_STORAGE_MAX_POINTS_KEY = "maxPoints";
-const BALL_SPEED = 1300;
+const BALL_SPEED = 13;
 
 // so the bricks aren`t glued to the wall and each other
 const CANVAS_BRICK_PADDING_SIDES = 25;
@@ -52,7 +52,7 @@ function startGame() {
   fillCanvas();
 
   // create the stick
-  const stickWidth = canvas.width;
+  const stickWidth = canvas.width / 5;
   stick = new Stick(
     stickWidth,
     STICK_HEIGHT,
