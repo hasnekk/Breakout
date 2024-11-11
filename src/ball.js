@@ -1,3 +1,5 @@
+const hitSound = new Audio("../assets/sounds/ballHitSound.mp3");
+
 class Ball {
   constructor(x, y, radius, speed, color, ctx, bricks, stick) {
     this.radius = radius;
@@ -73,6 +75,9 @@ class Ball {
 
           // Mark the brick as hit
           brick.setHit(true);
+          hitSound.currentTime = 0;
+          hitSound.play();
+
           break; // Stop checking other bricks once one is hit
         }
       }

@@ -2,6 +2,9 @@ import { Stick } from "./src/stick.js";
 import { Brick } from "./src/brick.js";
 import { Ball } from "./src/ball.js";
 
+const lostSound = new Audio("./assets/sounds/gameLost.mp3");
+const wonSound = new Audio("./assets/sounds/gameWon.mp3");
+
 // constants
 const STICK_COLOR = "red";
 const STICK_HEIGHT = 15;
@@ -12,7 +15,7 @@ const BRICK_COLORS = ["purple", "pink", "blue", "yellow"];
 const BALL_RADIUS = 10;
 const BALL_COLOR = "white";
 const LOCAL_STORAGE_MAX_POINTS_KEY = "maxPoints";
-const BALL_SPEED = 13;
+const BALL_SPEED = 1300;
 
 // so the bricks aren`t glued to the wall and each other
 const CANVAS_BRICK_PADDING_SIDES = 25;
@@ -49,7 +52,7 @@ function startGame() {
   fillCanvas();
 
   // create the stick
-  const stickWidth = canvas.width / 5;
+  const stickWidth = canvas.width;
   stick = new Stick(
     stickWidth,
     STICK_HEIGHT,
@@ -200,10 +203,16 @@ function gameOver() {
     canvas.height / 2 + 70
   );
 
-  if (Brick.points > maxPoints) {
+  if (Brick.points >= maxPoints) {
     ctx.fillText("NEW HIGHSCORE", canvas.width / 2, canvas.height / 2 + 120);
 
     localStorage.setItem(LOCAL_STORAGE_MAX_POINTS_KEY, Brick.points);
+
+    wonSound.currentTime = 0;
+    wonSound.play();
+  } else {
+    lostSound.currentTime = 0;
+    lostSound.play();
   }
 
   // reset
