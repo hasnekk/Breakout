@@ -1,4 +1,4 @@
-const hitSound = new Audio("../assets/sounds/ballHitSound.mp3");
+const hitSound = new Audio("./assets/sounds/ballHitSound.mp3");
 
 class Ball {
   constructor(x, y, radius, speed, color, ctx, bricks, stick) {
